@@ -44,3 +44,20 @@ test('Teste buttlon disabled 🆒', () => {
   fireEvent.click(checkbox);
   expect(buttonEl).toBeEnabled();
 });
+
+test('Color button background', () => {
+  render(<App />);
+  const checkbox = screen.getByRole('checkbox', { name: 'Disable button' });
+  const buttonEl = screen.getByRole('button', { name: /Change color/i });
+
+  fireEvent.click(checkbox);
+  expect(buttonEl).toHaveStyle({ backgroundColor: 'gray' });
+  fireEvent.click(checkbox);
+  expect(buttonEl).toHaveStyle({ backgroundColor: 'red' });
+
+  fireEvent.click(buttonEl);
+  fireEvent.click(checkbox);
+  expect(buttonEl).toHaveStyle({ backgroundColor: 'gray' });
+  fireEvent.click(checkbox);
+  expect(buttonEl).toHaveStyle({ backgroundColor: 'blue' });
+});

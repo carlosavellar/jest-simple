@@ -5,6 +5,7 @@ import './App.css';
 function App() {
   const [bgButtonColor, setbgButtonColor] = useState('red');
   const [isDisable, setIsDisable] = useState(false);
+  const [isGray, setIsGray] = useState('');
 
   const newColorBgButton = bgButtonColor === 'red' ? 'blue' : 'red';
 
@@ -21,14 +22,14 @@ function App() {
     setIsDisable(e.target.checked);
   };
 
-  useEffect(() => {
-    console.log(bgButtonColor);
-  }, [bgButtonColor]);
+  const handlerSetButtonGray = () => {
+    return isDisable ? 'gray' : bgButtonColor;
+  };
 
   return (
     <div className="App">
       <button
-        style={{ backgroundColor: `${bgButtonColor}` }}
+        style={{ backgroundColor: `${handlerSetButtonGray()}` }}
         onClick={() => handlerSetButtonColor()}
         disabled={isDisable}
       >
